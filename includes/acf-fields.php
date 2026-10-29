@@ -42,6 +42,16 @@ function community_events_register_acf_fields() {
 					'instructions' => __( 'For example: wheelchair ramp, hearing loop, accessible toilets.', 'wp-community-events-block' ),
 					'rows'         => 3,
 				),
+				array(
+					'key'           => 'field_ce_related_events',
+					'label'         => __( 'Related events', 'wp-community-events-block' ),
+					'name'          => 'ce_related_events',
+					'type'          => 'relationship',
+					'post_type'     => array( 'ce_event' ),
+					'filters'       => array( 'search', 'taxonomy' ),
+					'return_format' => 'id',
+					'max'           => 3,
+				),
 			),
 			'location'     => array(
 				array(
