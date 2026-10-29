@@ -9,8 +9,9 @@ Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 ### Phase 1: Event display
 
 - [x] Upcoming Event block
-- [ ] Event custom post type with date, time, location and capacity
-- [ ] Event categories
+- [x] Event custom post type with date, time, location and capacity
+- [x] Event categories
+- [x] Optional ACF integration: organizer, contact, accessibility notes and related events
 - [ ] Event List block with category filtering
 
 ### Phase 2: Registration
@@ -40,6 +41,20 @@ Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 - PHP 7.4 or later
 - Node.js 20.19+ or 22.13+ (for building the blocks)
 - A local WordPress environment, such as [Local](https://localwp.com/)
+- [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/) (free, optional) for extra event fields
+
+## Data model
+
+Core event data uses native WordPress APIs, so the plugin works without any other plugins:
+
+| Data | Storage | Registered with |
+| --- | --- | --- |
+| Events | `ce_event` post type | `register_post_type()` |
+| Categories | `ce_event_category` taxonomy | `register_taxonomy()` |
+| Start, end, location, capacity | Post meta, exposed in the REST API | `register_post_meta()` |
+| Organizer, email, accessibility notes, related events | ACF fields, only when ACF is active | `acf_add_local_field_group()` |
+
+Core fields use native meta because registrations will read and write capacity through the REST API with strict types. Display-only fields use ACF for a faster, friendlier admin UI. The ACF field group is defined in PHP, so it is version-controlled and ships with the plugin.
 
 ## Local development
 
@@ -83,6 +98,10 @@ Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 ```
 wp-community-events-block/
 ├── wp-community-events-block.php   # Main plugin file: plugin header and block registration
+├── includes/                       # PHP modules loaded by the main plugin file
+│   ├── post-types.php              # Event post type and category taxonomy
+│   ├── post-meta.php               # Event meta fields (date, location, capacity)
+│   └── acf-fields.php              # Optional ACF field group (runs only when ACF is active)
 ├── src/                            # Block source code (edit these files)
 │   └── wp-community-events-block/
 │       ├── block.json              # Block metadata: name, title, icon, assets
