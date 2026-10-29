@@ -18,7 +18,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 export default function save() {
 	return (
 		<p { ...useBlockProps.save() }>
-			{ 'Wp Community Events Block – hello from the saved content!' }
+			{ 'Upcoming event will appear here.' }
 		</p>
 	);
 }
