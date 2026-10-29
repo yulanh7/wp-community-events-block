@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name:       Community Events Hub
- * Description:       Shows the next upcoming event with its date, time and location.
+ * Description:       Event listings and registrations for community groups.
  * Version:           0.1.0
  * Requires at least: 6.8
  * Requires PHP:      7.4
  * Author:            Yulan Huang
- * Uri:               https://github.com/yulanh7/wp-community-events-block
+ * Plugin URI:        https://github.com/yulanh7/wp-community-events-block
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       wp-community-events-block
