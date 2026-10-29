@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "community-events/upcoming-event",
+	"version": "0.1.0",
+	"title": "Upcoming Event",
+	"category": "widgets",
+	"icon": "calendar-alt",
+	"description": "Shows the next upcoming event with its date, time and location.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "wp-community-events-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
