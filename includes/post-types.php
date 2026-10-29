@@ -11,9 +11,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function community_events_register_post_type() {
 	$labels = array(
-		'name'          => __( 'Events', 'wp-community-events-block' ),
-		'singular_name' => __( 'Event', 'wp-community-events-block' ),
-		// TODO: add_new_item, edit_item, view_item, search_items, not_found ...
+		'name'               => __( 'Events', 'wp-community-events-block' ),
+		'singular_name'      => __( 'Event', 'wp-community-events-block' ),
+		'add_new_item'       => __( 'Add New Event', 'wp-community-events-block' ),
+		'edit_item'          => __( 'Edit Event', 'wp-community-events-block' ),
+		'new_item'           => __( 'New Event', 'wp-community-events-block' ),
+		'view_item'          => __( 'View Event', 'wp-community-events-block' ),
+		'view_items'         => __( 'View Events', 'wp-community-events-block' ),
+		'all_items'          => __( 'All Events', 'wp-community-events-block' ),
+		'search_items'       => __( 'Search Events', 'wp-community-events-block' ),
+		'not_found'          => __( 'No events found.', 'wp-community-events-block' ),
+		'not_found_in_trash' => __( 'No events found in Trash.', 'wp-community-events-block' ),
+		'archives'           => __( 'Event Archives', 'wp-community-events-block' ),
+		'item_published'     => __( 'Event published.', 'wp-community-events-block' ),
+		'item_updated'       => __( 'Event updated.', 'wp-community-events-block' ),
 	);
 
 	register_post_type(
