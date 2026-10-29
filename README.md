@@ -82,6 +82,18 @@ Core fields use native meta because registrations will read and write capacity t
 
 4. Activate **Community Events Hub** on the **Plugins** screen in WordPress.
 
+### Demo content
+
+To fill a local site with sample events and categories, run this from the WordPress root (in Local, use **Open site shell**):
+
+```bash
+wp eval-file wp-content/plugins/wp-community-events-block/bin/seed-demo-content.php
+```
+
+It creates 11 categories and 12 events (10 upcoming, 2 past), including ACF fields when ACF is active. Running it again updates the demo content instead of duplicating it.
+
+Featured images are attached from `demo-images/<event-slug>.jpg` (1600px, free-licence stock photos). They are only used for demo content and are not needed by the plugin itself.
+
 ### Available scripts
 
 | Command | Description |
