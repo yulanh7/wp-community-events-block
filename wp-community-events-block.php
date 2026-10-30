@@ -23,6 +23,7 @@ require_once __DIR__ . '/includes/acf-fields.php';
 require_once __DIR__ . '/includes/template-tags.php';
 require_once __DIR__ . '/includes/assets.php';
 require_once __DIR__ . '/includes/templates.php';
+require_once __DIR__ . '/includes/patterns.php';
 /**
  * Registers the block(s) metadata from the `blocks-manifest.php` and registers the block type(s)
  * based on the registered block metadata. Behind the scenes, it registers also all assets so they can be enqueued
