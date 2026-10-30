@@ -15,22 +15,25 @@ Volunteers add events in the WordPress admin, then place blocks on any page to s
 
 Current features:
 
-* Upcoming Event block: highlights the next event with its date, time and location
+* Event post type with date, time, location and capacity, plus event categories
+* Upcoming Event block: highlights the next event with a live countdown
+* Event List block: event cards with category filters, month grouping and related events
+* Event Details block: date, time, location and places for the current event
+* Block templates for single events, the events archive and event categories
+* Home page block pattern
 
 Planned features:
 
-* Event post type with date, time, location and capacity
-* Event List block with category filtering
 * Registration form with capacity limits and confirmation emails
 * Admin registration list with search and CSV export
 * Add to calendar (.ics download)
-* English and Chinese translations
+* Translation-ready (WordPress i18n)
 
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/wp-community-events-block` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. In the block editor, click "+" and search for "Upcoming Event" to add the block to a page.
+3. Visit /events/ to see the events archive, or add the "Upcoming Event" and "Event List" blocks to any page.
 
 
 == Changelog ==

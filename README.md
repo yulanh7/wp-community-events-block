@@ -8,11 +8,14 @@ Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 
 ### Phase 1: Event display
 
-- [x] Upcoming Event block
 - [x] Event custom post type with date, time, location and capacity
 - [x] Event categories
 - [x] Optional ACF integration: organizer, contact, accessibility notes and related events
-- [ ] Event List block with category filtering
+- [x] Upcoming Event block: the next event, with a live countdown
+- [x] Event List block: card grid with category filters, month grouping, past events and related events
+- [x] Event Details block: date, time, location and places, or accessibility and organiser details
+- [x] Block templates for single events, the events archive and event categories
+- [x] Home page block pattern
 
 ### Phase 2: Registration
 
@@ -24,7 +27,7 @@ Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 
 ### Phase 3: Real-world use
 
-- [ ] English and Chinese translations (WordPress i18n)
+- [ ] Translation-ready (WordPress i18n)
 - [ ] Add to calendar (`.ics` download, no third-party services)
 - [ ] Monthly calendar view block
 - [ ] Privacy tools for exporting and deleting registration data (Australian Privacy Act basics)
@@ -34,6 +37,26 @@ Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 - [ ] Accessibility review (keyboard navigation, contrast, form labels)
 - [ ] GitHub Actions for linting and building a release zip
 - [ ] Live demo on WordPress Playground
+
+## Blocks, templates and patterns
+
+All three blocks are dynamic: `render.php` builds the HTML on every page load, so dates and places are always current. The editor shows a live preview through `ServerSideRender`.
+
+| Block | What it shows | Main settings |
+| --- | --- | --- |
+| Upcoming Event | The next event as a featured card | Show countdown |
+| Event List | Upcoming events as cards | Number, columns, category, filters, group by month, past events, related to current event |
+| Event Details | Facts about the current event | Summary (date, time, location, places) or info (accessibility, organiser) |
+
+The plugin also registers block templates, so an event site works as soon as the plugin is active:
+
+| Template | Used for |
+| --- | --- |
+| `single-ce_event` | A single event: image, details, and related events |
+| `archive-ce_event` | `/events/`: all upcoming events with category filters, grouped by month |
+| `taxonomy-ce_event_category` | `/event-category/<slug>/`: events in one category |
+
+A **Community home page** pattern (in the inserter under **Patterns → Community Events**) adds an intro, the next event, upcoming events, category links and a volunteer call to action.
 
 ## Requirements
 
@@ -101,7 +124,7 @@ Featured images are attached from `demo-images/<event-slug>.jpg` (1600px, free-l
 | `npm run start` | Build in watch mode for development |
 | `npm run build` | Build for production |
 | `npm run lint:js` | Check JavaScript code style |
-| `npm run lint:css` | Check SCSS code style |
+| `npm run lint:css` | Check CSS code style |
 | `npm run format` | Format code |
 | `npm run plugin-zip` | Create an installable plugin zip |
 
@@ -113,15 +136,20 @@ wp-community-events-block/
 ├── includes/                       # PHP modules loaded by the main plugin file
 │   ├── post-types.php              # Event post type and category taxonomy
 │   ├── post-meta.php               # Event meta fields (date, location, capacity)
-│   └── acf-fields.php              # Optional ACF field group (runs only when ACF is active)
+│   ├── acf-fields.php              # Optional ACF field group (runs only when ACF is active)
+│   ├── template-tags.php           # Shared helpers: event queries, cards, dates, places
+│   ├── assets.php                  # Registers the shared stylesheet
+│   ├── templates.php               # Registers the block templates
+│   └── patterns.php                # Registers the home page pattern
 ├── src/                            # Block source code (edit these files)
-│   └── wp-community-events-block/
-│       ├── block.json              # Block metadata: name, title, icon, assets
-│       ├── index.js                # Registers the block in the editor
-│       ├── edit.js                 # Editor view (React)
-│       ├── save.js                 # Saved front-end markup
-│       ├── style.scss              # Styles for the editor and front end
-│       └── editor.scss             # Styles for the editor only
+│   ├── upcoming-event/             # Each block: block.json, index.js, edit.js (React), render.php
+│   ├── event-list/
+│   └── event-details/
+├── assets/css/community-events.css # Shared front-end styles for all blocks
+├── templates/                      # Block templates (single event, archive, category)
+├── patterns/home.php               # Home page pattern
+├── bin/seed-demo-content.php       # WP-CLI script that creates demo events
+├── demo-images/                    # Featured images for the demo events
 ├── build/                          # Compiled output (generated, not committed)
 ├── package.json                    # npm scripts and dependencies
 └── readme.txt                      # WordPress.org plugin readme
