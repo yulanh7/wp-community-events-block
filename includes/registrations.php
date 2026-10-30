@@ -134,3 +134,53 @@ function community_events_filter_registration_count( $count, $post_id ) {
 	return $count + community_events_count_registered_places( $post_id );
 }
 add_filter( 'community_events_registration_count', 'community_events_filter_registration_count', 10, 2 );
+
+/**
+ * Gets registrations, newest first.
+ *
+ * @param int $event_id Event ID, or 0 for all events.
+ * @param int $limit    How many to return.
+ * @param int $offset   How many to skip, for paging.
+ * @return object[] Rows from the registrations table.
+ */
+function community_events_get_registrations( $event_id = 0, $limit = 20, $offset = 0 ) {
+	global $wpdb;
+
+	$table = community_events_registrations_table();
+
+	if ( $event_id ) {
+		return $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT * FROM %i WHERE event_id = %d ORDER BY created_at DESC, id DESC LIMIT %d OFFSET %d',
+				$table,
+				$event_id,
+				$limit,
+				$offset
+			)
+		);
+	}
+
+	return $wpdb->get_results(
+		$wpdb->prepare( 'SELECT * FROM %i ORDER BY created_at DESC, id DESC LIMIT %d OFFSET %d', $table, $limit, $offset )
+	);
+}
+
+/**
+ * Counts registrations (rows, not places).
+ *
+ * @param int $event_id Event ID, or 0 for all events.
+ * @return int
+ */
+function community_events_count_registrations( $event_id = 0 ) {
+	global $wpdb;
+
+	$table = community_events_registrations_table();
+
+	if ( $event_id ) {
+		return (int) $wpdb->get_var(
+			$wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE event_id = %d', $table, $event_id )
+		);
+	}
+
+	return (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i', $table ) );
+}
