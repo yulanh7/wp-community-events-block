@@ -21,5 +21,6 @@
 	"textdomain": "wp-community-events-block",
 	"editorScript": "file:./index.js",
 	"style": "community-events",
+	"viewScript": "file:./view.js",
 	"render": "file:./render.php"
 }
