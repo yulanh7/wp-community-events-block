@@ -24,6 +24,7 @@ require_once __DIR__ . '/includes/template-tags.php';
 require_once __DIR__ . '/includes/registrations.php';
 require_once __DIR__ . '/includes/rest-api.php';
 require_once __DIR__ . '/includes/admin.php';
+require_once __DIR__ . '/includes/emails.php';
 require_once __DIR__ . '/includes/assets.php';
 require_once __DIR__ . '/includes/editor.php';
 require_once __DIR__ . '/includes/templates.php';

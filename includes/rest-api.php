@@ -152,7 +152,7 @@ function community_events_rest_register( WP_REST_Request $request ) {
 	return new WP_REST_Response(
 		array(
 			/* translators: %s: attendee name. */
-			'message'    => sprintf( __( 'Thanks, %s! Your place is booked.', 'wp-community-events-block' ), $name ),
+			'message'    => sprintf( __( 'Thanks, %s! Your place is booked. We have emailed you the details.', 'wp-community-events-block' ), $name ),
 			'placesLeft' => $left - $places,
 			// Same markup as the Places line on the page, so the form can swap it in.
 			'placesHtml' => community_events_render_places( $event_id ),

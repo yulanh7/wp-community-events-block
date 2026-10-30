@@ -184,3 +184,17 @@ function community_events_count_registrations( $event_id = 0 ) {
 
 	return (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i', $table ) );
 }
+
+/**
+ * Gets one registration.
+ *
+ * @param int $registration_id Registration ID.
+ * @return object|null Row from the registrations table.
+ */
+function community_events_get_registration( $registration_id ) {
+	global $wpdb;
+
+	return $wpdb->get_row(
+		$wpdb->prepare( 'SELECT * FROM %i WHERE id = %d', community_events_registrations_table(), $registration_id )
+	);
+}
