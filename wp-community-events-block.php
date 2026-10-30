@@ -22,6 +22,7 @@ require_once __DIR__ . '/includes/post-meta.php';
 require_once __DIR__ . '/includes/acf-fields.php';
 require_once __DIR__ . '/includes/template-tags.php';
 require_once __DIR__ . '/includes/assets.php';
+require_once __DIR__ . '/includes/editor.php';
 require_once __DIR__ . '/includes/templates.php';
 require_once __DIR__ . '/includes/patterns.php';
 /**
