@@ -37,7 +37,7 @@ Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 
 ## Requirements
 
-- WordPress 6.8 or later
+- WordPress 7.0 or later
 - PHP 7.4 or later
 - Node.js 20.19+ or 22.13+ (for building the blocks)
 - A local WordPress environment, such as [Local](https://localwp.com/)

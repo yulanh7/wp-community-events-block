@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
-import ServerSideRender from '@wordpress/server-side-render';
+import { ServerSideRender } from '@wordpress/server-side-render';
 import metadata from './block.json';
 
 /**
@@ -20,7 +20,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Settings', 'wp-community-events-block' ) }
 				>
 					<ToggleControl
-						__nextHasNoMarginBottom
 						label={ __(
 							'Show countdown',
 							'wp-community-events-block'

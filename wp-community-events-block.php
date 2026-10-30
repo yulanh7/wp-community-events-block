@@ -3,7 +3,7 @@
  * Plugin Name:       Community Events Hub
  * Description:       Event listings and registrations for community groups.
  * Version:           0.1.0
- * Requires at least: 6.8
+ * Requires at least: 7.0
  * Requires PHP:      7.4
  * Author:            Yulan Huang
  * Plugin URI:        https://github.com/yulanh7/wp-community-events-block
