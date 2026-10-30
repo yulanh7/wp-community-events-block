@@ -178,6 +178,9 @@
 }
 
 .ce-card__media img {
+	/* Fill the box without stretching it, so portrait photos are cropped too. */
+	position: absolute;
+	inset: 0;
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -312,6 +315,9 @@
 }
 
 .ce-featured__media img {
+	/* Fill the box without stretching it, so portrait photos are cropped too. */
+	position: absolute;
+	inset: 0;
 	display: block;
 	width: 100%;
 	height: 100%;
