@@ -21,6 +21,7 @@ require_once __DIR__ . '/includes/post-types.php';
 require_once __DIR__ . '/includes/post-meta.php';
 require_once __DIR__ . '/includes/acf-fields.php';
 require_once __DIR__ . '/includes/template-tags.php';
+require_once __DIR__ . '/includes/registrations.php';
 require_once __DIR__ . '/includes/assets.php';
 require_once __DIR__ . '/includes/editor.php';
 require_once __DIR__ . '/includes/templates.php';
@@ -37,3 +38,5 @@ function community_events_register_blocks() {
 	wp_register_block_types_from_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
 }
 add_action( 'init', 'community_events_register_blocks' );
+
+register_activation_hook( __FILE__, 'community_events_install' );
