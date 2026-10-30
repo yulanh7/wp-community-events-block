@@ -344,6 +344,11 @@
 	padding: 22px 24px 24px;
 }
 
+/* Grid items stretch to the row height by default; keep the date tab its natural size. */
+.ce-featured__body > .ce-datetab {
+	align-self: start;
+}
+
 .ce-featured__title {
 	margin: 10px 0 8px;
 	font-family: var(--ce-font-display);
@@ -365,6 +370,7 @@
 }
 
 .ce-button {
+	box-sizing: border-box;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
