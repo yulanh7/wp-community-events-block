@@ -1,39 +1,41 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
 import { __ } from '@wordpress/i18n';
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-import './editor.scss';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, ToggleControl } from '@wordpress/components';
+import ServerSideRender from '@wordpress/server-side-render';
+import metadata from './block.json';
 
 /**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
+ * Editor view: settings in the sidebar, and a live preview rendered by render.php.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
+ * @param {Object}   props               Block props.
+ * @param {Object}   props.attributes    Block attributes.
+ * @param {Function} props.setAttributes Updates attributes.
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit( { attributes, setAttributes } ) {
 	return (
-		<p { ...useBlockProps() }>
-			{ __(
-				'Wp Community Events Block – hello from Rachel!',
-				'wp-community-events-block'
-			) }
-		</p>
+		<div { ...useBlockProps() }>
+			<InspectorControls>
+				<PanelBody
+					title={ __( 'Settings', 'wp-community-events-block' ) }
+				>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label={ __(
+							'Show countdown',
+							'wp-community-events-block'
+						) }
+						checked={ attributes.showCountdown }
+						onChange={ ( showCountdown ) =>
+							setAttributes( { showCountdown } )
+						}
+					/>
+				</PanelBody>
+			</InspectorControls>
+			<ServerSideRender
+				block={ metadata.name }
+				attributes={ attributes }
+			/>
+		</div>
 	);
 }

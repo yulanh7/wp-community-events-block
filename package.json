@@ -17,7 +17,9 @@
 	"dependencies": {
 		"@wordpress/block-editor": "latest",
 		"@wordpress/blocks": "latest",
-		"@wordpress/i18n": "latest"
+		"@wordpress/components": "^43.0.0",
+		"@wordpress/i18n": "latest",
+		"@wordpress/server-side-render": "^7.0.0"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^35.0.0"
