@@ -57,7 +57,6 @@ endif;
 $community_events_start    = community_events_get_datetime( $community_events_id, 'ce_event_start' );
 $community_events_end      = community_events_get_datetime( $community_events_id, 'ce_event_end' );
 $community_events_location = get_post_meta( $community_events_id, 'ce_event_location', true );
-$community_events_is_past  = $community_events_start && $community_events_start->getTimestamp() < time();
 
 $community_events_time = '';
 if ( $community_events_start ) {
@@ -94,9 +93,4 @@ if ( $community_events_start ) {
 			<dd><?php echo community_events_render_places( $community_events_id ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></dd>
 		</div>
 	</dl>
-
-	<?php if ( ! $community_events_is_past ) : ?>
-		<span class="ce-button" aria-disabled="true"><?php esc_html_e( 'Registration opens soon', 'wp-community-events-block' ); ?></span>
-		<p class="ce-details__note"><?php esc_html_e( 'Online registration is coming soon.', 'wp-community-events-block' ); ?></p>
-	<?php endif; ?>
 </aside>

@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "community-events/registration-form",
+	"version": "0.1.0",
+	"title": "Event Registration",
+	"category": "widgets",
+	"icon": "groups",
+	"description": "Lets visitors book places for the current event.",
+	"keywords": [ "event", "register", "booking", "form" ],
+	"usesContext": [ "postId", "postType" ],
+	"supports": {
+		"html": false,
+		"multiple": false
+	},
+	"textdomain": "wp-community-events-block",
+	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js",
+	"style": "community-events",
+	"render": "file:./render.php"
+}

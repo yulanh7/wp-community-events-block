@@ -73,7 +73,7 @@ $community_events_categories = get_terms(
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph -->
-			<p><?php esc_html_e( 'Online registration is coming soon. Until then, every event page lists the time, place and who to contact.', 'wp-community-events-block' ); ?></p>
+			<p><?php esc_html_e( 'Booking takes a minute. Open any event with places left and fill in the short form on the right.', 'wp-community-events-block' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons -->
