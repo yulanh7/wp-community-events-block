@@ -8,7 +8,7 @@ Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 
 [**Open the demo in WordPress Playground →**](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/yulanh7/wp-community-events-block/main/playground/blueprint.json)
 
-The demo runs entirely in your browser, so the first load takes a little while. You are logged in as an administrator: try booking a place on an event, then see it under **Events → Registrations** in the admin. Nothing is saved after you close the tab, and emails are not sent.
+The demo runs entirely in your browser, so the first load takes about 30 seconds while a progress bar shows. If the page stays blank, refresh it once. You are logged in as an administrator: try booking a place on an event, then see it under **Events → Registrations** in the admin. Nothing is saved after you close the tab, and emails are not sent.
 
 ## Screenshots
 

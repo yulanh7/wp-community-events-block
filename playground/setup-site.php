@@ -49,6 +49,8 @@ $community_events_home_id = wp_insert_post(
 		'post_title'   => 'Home',
 		'post_name'    => 'home',
 		'post_content' => $community_events_pattern['content'],
+		// The pattern has its own heading, so hide the "Home" title.
+		'page_template' => 'page-no-title',
 	)
 );
 
