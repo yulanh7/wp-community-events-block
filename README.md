@@ -4,6 +4,16 @@ A WordPress plugin that helps churches, community groups and nonprofits publish 
 
 Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 
+## Screenshots
+
+| Home page | Event page with the registration form |
+| --- | --- |
+| ![Home page with the next event, upcoming events and category links](docs/home.jpg) | ![Single event page with event details and the registration form](docs/event.jpg) |
+
+| Events archive | Registrations in the admin |
+| --- | --- |
+| ![Events archive grouped by month, with category filters](docs/events.jpg) | ![Events → Registrations screen with bulk actions, an event filter and CSV export](docs/admin-registrations.png) |
+
 ## Features
 
 ### Phase 1: Event display
