@@ -1,6 +1,6 @@
 {
 	"name": "wp-community-events-block",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "A WordPress block plugin that displays the next upcoming event with its date, time and location.",
 	"author": "Yulan Huang",
 	"license": "GPL-2.0-or-later",

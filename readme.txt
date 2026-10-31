@@ -1,7 +1,7 @@
 === Community Events Hub ===
 Tags:              events, registration, calendar, block
 Tested up to:      7.1
-Stable tag:        0.1.0
+Stable tag:        0.2.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,11 +21,13 @@ Current features:
 * Event Details block: date, time, location and places for the current event
 * Block templates for single events, the events archive and event categories
 * Home page block pattern
+* Event settings panel in the editor sidebar
+* Event Registration block with capacity limits, spam protection and no page reload
+* Confirmation email to the attendee and a notice to the organiser
+* Events → Registrations admin screen with an event filter and CSV export
 
 Planned features:
 
-* Registration form with capacity limits and confirmation emails
-* Admin registration list with search and CSV export
 * Add to calendar (.ics download)
 * Translation-ready (WordPress i18n)
 
@@ -37,6 +39,12 @@ Planned features:
 
 
 == Changelog ==
+
+= 0.2.0 =
+* Add the Event settings sidebar panel
+* Add online registration: Event Registration block, REST endpoint and registrations table
+* Add the Registrations admin screen with CSV export
+* Add confirmation and organiser emails
 
 = 0.1.0 =
 * Release

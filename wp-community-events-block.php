@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Community Events Hub
  * Description:       Event listings and registrations for community groups.
- * Version:           0.1.0
+ * Version:           0.2.0
  * Requires at least: 7.0
  * Requires PHP:      7.4
  * Author:            Yulan Huang
