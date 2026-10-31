@@ -251,6 +251,14 @@ $community_events_events = array(
 	),
 );
 
+// The first event above is on 1 November 2026. Later runs (such as a fresh
+// Playground demo) move every event forward by whole weeks, so the first one is
+// still upcoming and each one stays on the same day of the week.
+$community_events_weeks = max( 0, (int) ceil( ( time() - strtotime( '2026-11-01 10:00' ) ) / WEEK_IN_SECONDS ) );
+$community_events_shift = function ( $datetime ) use ( $community_events_weeks ) {
+	return ( new DateTimeImmutable( $datetime ) )->modify( "+{$community_events_weeks} weeks" )->format( 'Y-m-d\TH:i' );
+};
+
 $community_events_term_ids = array();
 
 foreach ( $community_events_categories as $community_events_slug => $community_events_category ) {
@@ -300,8 +308,8 @@ foreach ( $community_events_events as $community_events_event ) {
 			'post_excerpt' => $community_events_event['excerpt'],
 			'post_content' => trim( $community_events_content ),
 			'meta_input'   => array(
-				'ce_event_start'    => $community_events_event['start'],
-				'ce_event_end'      => $community_events_event['end'],
+				'ce_event_start'    => $community_events_shift( $community_events_event['start'] ),
+				'ce_event_end'      => $community_events_shift( $community_events_event['end'] ),
 				'ce_event_location' => $community_events_event['location'],
 				'ce_event_capacity' => $community_events_event['capacity'],
 			),

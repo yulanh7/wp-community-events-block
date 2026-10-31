@@ -4,6 +4,12 @@ A WordPress plugin that helps churches, community groups and nonprofits publish 
 
 Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 
+## Live demo
+
+[**Open the demo in WordPress Playground →**](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/yulanh7/wp-community-events-block/main/playground/blueprint.json)
+
+The demo runs entirely in your browser, so the first load takes a little while. You are logged in as an administrator: try booking a place on an event, then see it under **Events → Registrations** in the admin. Nothing is saved after you close the tab, and emails are not sent.
+
 ## Screenshots
 
 | Home page | Event page with the registration form |
@@ -185,7 +191,7 @@ To fill a local site with sample events and categories, run this from the WordPr
 wp eval-file wp-content/plugins/wp-community-events-block/bin/seed-demo-content.php
 ```
 
-It creates 11 categories and 12 events (10 upcoming, 2 past), including ACF fields when ACF is active. Running it again updates the demo content instead of duplicating it.
+It creates 11 categories and 12 events (10 upcoming, 2 past), including ACF fields when ACF is active. Running it again updates the demo content instead of duplicating it. Event dates move forward by whole weeks when the script runs later, so the upcoming events are always in the future.
 
 Featured images are attached from `demo-images/<event-slug>.jpg` (1600px, free-licence stock photos). They are only used for demo content and are not needed by the plugin itself.
 
@@ -231,6 +237,8 @@ wp-community-events-block/
 ├── patterns/home.php               # Home page pattern
 ├── bin/seed-demo-content.php       # WP-CLI script that creates demo events
 ├── demo-images/                    # Featured images for the demo events
+├── playground/                     # Live demo: blueprint, site setup script, fonts, header and footer
+├── .github/workflows/playground.yml # Builds the plugin to the `playground` branch for the demo
 ├── build/                          # Compiled output (generated, not committed)
 ├── webpack.config.js               # Adds the event-settings entry to the default build
 ├── uninstall.php                   # Removes the registrations table when the plugin is deleted

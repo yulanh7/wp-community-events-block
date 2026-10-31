@@ -1,0 +1,118 @@
+{
+	"styles": {
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--atkinson-hyperlegible)",
+			"fontStyle": "normal",
+			"fontWeight": "400",
+			"fontSize": "var(--wp--preset--font-size--medium)"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--bricolage-grotesque)",
+					"fontStyle": "normal",
+					"fontWeight": "700"
+				},
+				"color": {
+					"text": "#17302a"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "#2f6b57"
+				}
+			},
+			"button": {
+				"color": {
+					"text": "#3a2a00",
+					"background": "#f2b33d"
+				}
+			}
+		},
+		"color": {
+			"background": "#f6f7f3",
+			"text": "#2b3b36"
+		},
+		"blocks": {
+			"core/button": {
+				"border": {
+					"radius": {
+						"topLeft": "999px",
+						"topRight": "999px",
+						"bottomLeft": "999px",
+						"bottomRight": "999px"
+					}
+				}
+			}
+		}
+	},
+	"settings": {
+		"layout": {
+			"wideSize": "1160px"
+		},
+		"typography": {
+			"fontFamilies": {
+				"custom": [
+					{
+						"name": "Bricolage Grotesque",
+						"slug": "bricolage-grotesque",
+						"fontFamily": "\"Bricolage Grotesque\", sans-serif",
+						"fontFace": [
+							{
+								"src": "fonts/3y9U6as8bTXq_nANBjzKo3IeZx8z6up5BeSl5jBNz_19PpbpMXuECpwUxJBOm_OJWiaaD30YfKfjZZoLvSniyMgvs-wJDtw.woff2",
+								"fontWeight": "500",
+								"fontStyle": "normal",
+								"fontFamily": "\"Bricolage Grotesque\""
+							},
+							{
+								"src": "fonts/3y9U6as8bTXq_nANBjzKo3IeZx8z6up5BeSl5jBNz_19PpbpMXuECpwUxJBOm_OJWiaaD30YfKfjZZoLvfzlyMgvs-wJDtw.woff2",
+								"fontWeight": "700",
+								"fontStyle": "normal",
+								"fontFamily": "\"Bricolage Grotesque\""
+							},
+							{
+								"src": "fonts/3y9U6as8bTXq_nANBjzKo3IeZx8z6up5BeSl5jBNz_19PpbpMXuECpwUxJBOm_OJWiaaD30YfKfjZZoLvZvlyMgvs-wJDtw.woff2",
+								"fontWeight": "800",
+								"fontStyle": "normal",
+								"fontFamily": "\"Bricolage Grotesque\""
+							}
+						]
+					},
+					{
+						"name": "Atkinson Hyperlegible",
+						"slug": "atkinson-hyperlegible",
+						"fontFamily": "\"Atkinson Hyperlegible\", sans-serif",
+						"fontFace": [
+							{
+								"src": "fonts/9Bt23C1KxNDXMspQ1lPyU89-1h6ONRlW45GE4JgpewSSbQ.woff2",
+								"fontWeight": "400",
+								"fontStyle": "normal",
+								"fontFamily": "\"Atkinson Hyperlegible\""
+							},
+							{
+								"src": "fonts/9Bt73C1KxNDXMspQ1lPyU89-1h6ONRlW45G8WbcNdi-OZFy-FA.woff2",
+								"fontWeight": "700",
+								"fontStyle": "normal",
+								"fontFamily": "\"Atkinson Hyperlegible\""
+							},
+							{
+								"src": "fonts/9Bt43C1KxNDXMspQ1lPyU89-1h6ONRlW45G055IoWQGCbUWn.woff2",
+								"fontWeight": "400",
+								"fontStyle": "italic",
+								"fontFamily": "\"Atkinson Hyperlegible\""
+							},
+							{
+								"src": "fonts/9Bt93C1KxNDXMspQ1lPyU89-1h6ONRlW45G056qRdiWPRlmuFH24.woff2",
+								"fontWeight": "700",
+								"fontStyle": "italic",
+								"fontFamily": "\"Atkinson Hyperlegible\""
+							}
+						]
+					}
+				]
+			}
+		}
+	},
+	"isGlobalStylesUserThemeJSON": true,
+	"version": 3
+}

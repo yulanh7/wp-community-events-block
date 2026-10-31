@@ -1,0 +1,51 @@
+# Builds the plugin and pushes it to the `playground` branch, which
+# playground/blueprint.json installs for the live demo.
+#
+# build/ is not in Git, so the demo cannot install straight from main.
+
+name: Playground build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: playground
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Copy the plugin files
+        run: |
+          mkdir dist
+          cp -R wp-community-events-block.php uninstall.php readme.txt LICENSE \
+            assets build includes patterns templates bin demo-images playground dist/
+
+      - name: Push to the playground branch
+        working-directory: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git init -q -b playground
+          git add -A
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Playground build from ${GITHUB_SHA::7}"
+          git push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" playground
