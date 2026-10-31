@@ -4,6 +4,8 @@ A WordPress plugin that helps churches, community groups and nonprofits publish 
 
 Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 
+![Booking a place: home page, events by category, the registration form, and the new registration in the admin](docs/demo.gif)
+
 ## Live demo
 
 [**Open the demo in WordPress Playground →**](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/yulanh7/wp-community-events-block/main/playground/blueprint.json)

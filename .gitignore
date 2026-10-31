@@ -34,3 +34,6 @@ Thumbs.db
 
 # Personal learning notes (local only)
 notes/
+
+# Screen recordings (convert to docs/demo.gif before committing)
+*.mov
