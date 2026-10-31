@@ -1,0 +1,602 @@
+/**
+ * Community Events Hub: shared styles for all event blocks.
+ *
+ * Colours and fonts are CSS custom properties, so a theme can override them.
+ */
+
+:root {
+	--ce-ink: #17302a;
+	--ce-text: #2b3b36;
+	--ce-muted: #5e6e68;
+	--ce-paper: #f6f7f3;
+	--ce-surface: #fff;
+	--ce-line: #dce2dc;
+	--ce-wattle: #f2b33d;
+	--ce-wattle-ink: #3a2a00;
+	--ce-gum: #2f6b57;
+	--ce-open: #2e7d4f;
+	--ce-low: #9a5a00;
+	--ce-full: #b3261e;
+	--ce-cat-worship: #4b4a8f;
+	--ce-cat-community: #2f6b57;
+	--ce-cat-learning: #2a5f8a;
+	--ce-cat-festivals: #b0402f;
+	--ce-radius: 14px;
+	--ce-font-display: var(--wp--preset--font-family--bricolage-grotesque, "Avenir Next", "Segoe UI", sans-serif);
+	--ce-font-body: var(--wp--preset--font-family--atkinson-hyperlegible, system-ui, sans-serif);
+}
+
+/* Date tab: a tear-off calendar page. */
+.ce-datetab {
+	display: inline-grid;
+	width: 62px;
+	text-align: center;
+	background: var(--ce-surface);
+	border: 1px solid var(--ce-line);
+	border-radius: 10px;
+	overflow: hidden;
+	font-family: var(--ce-font-display);
+	line-height: 1;
+}
+
+.ce-datetab__month {
+	background: var(--ce-ink);
+	color: #fff;
+	font: 700 12px/1 var(--ce-font-body);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	padding: 6px 0;
+}
+
+.ce-datetab__day {
+	color: var(--ce-ink);
+	font-size: 28px;
+	font-weight: 800;
+	padding: 4px 0 2px;
+}
+
+.ce-datetab__weekday {
+	color: var(--ce-muted);
+	font: 700 11px/1 var(--ce-font-body);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	padding-bottom: 7px;
+}
+
+/* Category pill. */
+.ce-pill {
+	display: inline-block;
+	background: var(--ce-gum);
+	color: #fff;
+	font: 700 12px/1 var(--ce-font-body);
+	letter-spacing: 0.04em;
+	padding: 6px 10px;
+	border-radius: 999px;
+}
+
+.ce-pill[data-category="worship"] { background: var(--ce-cat-worship); }
+.ce-pill[data-category="community"] { background: var(--ce-cat-community); }
+.ce-pill[data-category="learning"] { background: var(--ce-cat-learning); }
+.ce-pill[data-category="festivals"] { background: var(--ce-cat-festivals); }
+
+/* Date, time and location. */
+.ce-meta {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 4px;
+	color: var(--ce-muted);
+	font-size: 15px;
+}
+
+.ce-meta li {
+	display: flex;
+	gap: 8px;
+	align-items: baseline;
+}
+
+.ce-meta li::before {
+	content: "";
+	flex: none;
+	width: 15px;
+	height: 15px;
+	position: relative;
+	top: 2px;
+	background: currentColor;
+	-webkit-mask: var(--ce-icon) center / contain no-repeat;
+	mask: var(--ce-icon) center / contain no-repeat;
+}
+
+.ce-meta__time {
+	--ce-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E");
+}
+
+.ce-meta__location {
+	--ce-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z'/%3E%3Ccircle cx='12' cy='9' r='2.5'/%3E%3C/svg%3E");
+}
+
+/* Places left. */
+.ce-places {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0;
+	font-size: 15px;
+	font-weight: 700;
+}
+
+.ce-places__bar {
+	flex: 1;
+	max-width: 140px;
+	height: 6px;
+	background: var(--ce-line);
+	border-radius: 999px;
+	overflow: hidden;
+}
+
+.ce-places__bar span {
+	display: block;
+	height: 100%;
+	background: var(--ce-open);
+}
+
+.ce-places.is-open { color: var(--ce-open); }
+.ce-places.is-low { color: var(--ce-low); }
+.ce-places.is-low .ce-places__bar span { background: var(--ce-wattle); }
+.ce-places.is-full { color: var(--ce-full); }
+.ce-places.is-muted { color: var(--ce-muted); font-weight: 400; }
+
+/* Event card. */
+.ce-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--ce-columns, 3), minmax(0, 1fr));
+	gap: 24px;
+}
+
+.ce-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background: var(--ce-surface);
+	border: 1px solid var(--ce-line);
+	border-radius: var(--ce-radius);
+	overflow: hidden;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ce-card:hover,
+.ce-card:focus-within {
+	transform: translateY(-3px);
+	box-shadow: 0 16px 30px -22px rgba(23, 48, 42, 0.55);
+}
+
+.ce-card__media {
+	position: relative;
+	aspect-ratio: 16 / 10;
+	background: var(--ce-line);
+}
+
+.ce-card__media img {
+	/* Fill the box without stretching it, so portrait photos are cropped too. */
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.ce-card .ce-datetab {
+	position: absolute;
+	left: 14px;
+	bottom: -22px;
+	box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.35);
+}
+
+.ce-card__body {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 32px 18px 18px;
+}
+
+.ce-card__title {
+	margin: 0;
+	font-family: var(--ce-font-display);
+	font-size: 21px;
+	line-height: 1.15;
+	color: var(--ce-ink);
+}
+
+.ce-card__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Make the whole card clickable while keeping one link for screen readers. */
+.ce-card__title a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.ce-card__title a:focus-visible {
+	outline: none;
+}
+
+.ce-card:focus-within {
+	outline: 3px solid var(--ce-gum);
+	outline-offset: 2px;
+}
+
+.ce-card .ce-places {
+	margin-top: auto;
+	padding-top: 6px;
+}
+
+.ce-card.is-past {
+	opacity: 0.72;
+}
+
+.ce-card.is-past img {
+	filter: grayscale(0.7);
+}
+
+/* Event list: filters, month headings, empty state. */
+.ce-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-bottom: 8px;
+}
+
+.ce-chip {
+	padding: 10px 16px;
+	border: 1.5px solid var(--ce-line);
+	border-radius: 999px;
+	background: var(--ce-surface);
+	color: var(--ce-text);
+	font: 700 15px/1 var(--ce-font-body);
+	text-decoration: none;
+}
+
+.ce-chip[aria-current="page"] {
+	background: var(--ce-ink);
+	border-color: var(--ce-ink);
+	color: #fff;
+}
+
+.ce-list__heading {
+	margin: 0 0 20px;
+	font-family: var(--ce-font-display);
+	color: var(--ce-ink);
+}
+
+.ce-month {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin: 36px 0 16px;
+	color: var(--ce-muted);
+	font: 800 15px/1 var(--ce-font-body);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.ce-month::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: var(--ce-line);
+}
+
+.ce-empty {
+	padding: 24px;
+	border: 1.5px dashed var(--ce-line);
+	border-radius: var(--ce-radius);
+	color: var(--ce-muted);
+}
+
+/* Upcoming Event: featured card with countdown. */
+.ce-featured {
+	background: var(--ce-surface);
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0 1px 0 var(--ce-line), 0 18px 40px -24px rgba(23, 48, 42, 0.45);
+}
+
+.ce-featured__media {
+	position: relative;
+	aspect-ratio: 16 / 9;
+	background: var(--ce-line);
+}
+
+.ce-featured__media img {
+	/* Fill the box without stretching it, so portrait photos are cropped too. */
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.ce-featured__flag {
+	position: absolute;
+	top: 16px;
+	left: 16px;
+	background: var(--ce-ink);
+	color: #fff;
+	font: 700 12px/1 var(--ce-font-body);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	padding: 8px 12px;
+	border-radius: 999px;
+}
+
+.ce-featured__body {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: 18px;
+	padding: 22px 24px 24px;
+}
+
+/* Grid items stretch to the row height by default; keep the date tab its natural size. */
+.ce-featured__body > .ce-datetab {
+	align-self: start;
+}
+
+.ce-featured__title {
+	margin: 10px 0 8px;
+	font-family: var(--ce-font-display);
+	font-size: 26px;
+	line-height: 1.15;
+	color: var(--ce-ink);
+}
+
+.ce-featured__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.ce-featured__footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 16px;
+}
+
+.ce-button {
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 13px 20px;
+	border: 2px solid transparent;
+	border-radius: 999px;
+	background: var(--ce-wattle);
+	color: var(--ce-wattle-ink);
+	font: 700 16px/1 var(--ce-font-body);
+	text-decoration: none;
+}
+
+.ce-button.is-outline {
+	background: transparent;
+	border-color: var(--ce-ink);
+	color: var(--ce-ink);
+}
+
+.ce-button[aria-disabled="true"] {
+	background: var(--ce-line);
+	color: var(--ce-muted);
+	cursor: not-allowed;
+}
+
+.ce-countdown__label {
+	margin: 18px 0 0;
+	color: var(--ce-gum);
+	font: 700 13px/1 var(--ce-font-body);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.ce-countdown {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 8px;
+	margin: 10px 0 18px;
+}
+
+.ce-countdown > span {
+	padding: 10px 4px 8px;
+	text-align: center;
+	background: var(--ce-paper);
+	border: 1px solid var(--ce-line);
+	border-radius: 12px;
+	color: var(--ce-muted);
+	font: 700 11px/1 var(--ce-font-body);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.ce-countdown b {
+	display: block;
+	margin-bottom: 4px;
+	color: var(--ce-ink);
+	font: 800 clamp(26px, 3.4vw, 36px)/1 var(--ce-font-display);
+	font-variant-numeric: tabular-nums;
+	letter-spacing: 0;
+}
+
+/* Event Details: summary box and extra info. */
+.ce-details {
+	display: grid;
+	gap: 18px;
+	padding: 24px;
+	background: var(--ce-surface);
+	border: 1px solid var(--ce-line);
+	border-radius: 18px;
+	box-shadow: 0 18px 40px -30px rgba(23, 48, 42, 0.6);
+}
+
+.ce-details__heading,
+.ce-info__heading,
+.ce-register__heading {
+	margin: 0;
+	font-family: var(--ce-font-display);
+	font-size: 20px;
+	color: var(--ce-ink);
+}
+
+.ce-facts {
+	display: grid;
+	gap: 14px;
+	margin: 0;
+}
+
+.ce-facts dt {
+	color: var(--ce-muted);
+	font: 700 12px/1.2 var(--ce-font-body);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.ce-facts dd {
+	margin: 2px 0 0;
+	color: var(--ce-ink);
+	font-weight: 700;
+}
+
+.ce-details .ce-button,
+.ce-register .ce-button {
+	width: 100%;
+}
+
+.ce-info {
+	margin-top: 28px;
+	padding: 20px 22px;
+	background: var(--ce-surface);
+	border: 1px solid var(--ce-line);
+	border-radius: var(--ce-radius);
+}
+
+.ce-info p {
+	margin: 8px 0 0;
+}
+
+/* Registration form. */
+.ce-register {
+	display: grid;
+	gap: 16px;
+	margin-top: 24px;
+	padding: 24px;
+	background: var(--ce-surface);
+	border: 1px solid var(--ce-line);
+	border-radius: 18px;
+}
+
+.ce-form {
+	display: grid;
+	gap: 14px;
+}
+
+/* display: grid above would otherwise beat the hidden attribute. */
+.ce-form[hidden] {
+	display: none;
+}
+
+.ce-form__field {
+	display: grid;
+	gap: 6px;
+	margin: 0;
+}
+
+.ce-form__field label {
+	color: var(--ce-ink);
+	font-size: 15px;
+	font-weight: 700;
+}
+
+/* 17px keeps iPhones from zooming in when the field is tapped. */
+.ce-form__field input,
+.ce-form__field select {
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 48px;
+	padding: 10px 14px;
+	background: var(--ce-surface);
+	border: 2px solid var(--ce-line);
+	border-radius: 10px;
+	color: var(--ce-text);
+	font: 400 17px/1.3 var(--ce-font-body);
+}
+
+.ce-form__field input:focus-visible,
+.ce-form__field select:focus-visible {
+	border-color: var(--ce-ink);
+	outline: 3px solid var(--ce-wattle);
+	outline-offset: 2px;
+}
+
+/* Off screen rather than display: none, which some bots skip. */
+.ce-form__trap {
+	position: absolute;
+	left: -9999px;
+}
+
+.ce-register .ce-button {
+	cursor: pointer;
+}
+
+.ce-register .ce-button:disabled {
+	cursor: progress;
+	opacity: 0.6;
+}
+
+.ce-register__message,
+.ce-register__full {
+	margin: 0;
+	font-weight: 700;
+}
+
+.ce-register__message:empty {
+	display: none;
+}
+
+.ce-register__message.is-success,
+.ce-register__message.is-error {
+	padding: 14px 16px;
+	border-radius: 10px;
+}
+
+.ce-register__message.is-success {
+	background: #e6f2ea;
+	color: var(--ce-open);
+}
+
+.ce-register__message.is-error,
+.ce-register__full {
+	color: var(--ce-full);
+}
+
+.ce-register__message.is-error {
+	background: #fbeaea;
+}
+
+@media (max-width: 900px) {
+	.ce-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+	.ce-grid { grid-template-columns: minmax(0, 1fr); }
+	.ce-featured__body { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ce-card { transition: none; }
+	.ce-card:hover,
+	.ce-card:focus-within { transform: none; }
+}

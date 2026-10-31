@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "community-events/event-list",
+  "version": "0.2.0",
+  "title": "Event List",
+  "category": "widgets",
+  "icon": "grid-view",
+  "description": "Shows upcoming events as cards, with optional category filters.",
+  "keywords": [
+    "events",
+    "cards",
+    "grid"
+  ],
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "numberOfEvents": {
+      "type": "integer",
+      "default": 6
+    },
+    "columns": {
+      "type": "integer",
+      "default": 3
+    },
+    "category": {
+      "type": "string",
+      "default": ""
+    },
+    "showFilters": {
+      "type": "boolean",
+      "default": false
+    },
+    "groupByMonth": {
+      "type": "boolean",
+      "default": false
+    },
+    "showPast": {
+      "type": "boolean",
+      "default": false
+    },
+    "related": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "usesContext": [
+    "postId",
+    "postType"
+  ],
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "textdomain": "wp-community-events-block",
+  "editorScript": "file:./index.js",
+  "style": "community-events",
+  "render": "file:./render.php"
+}

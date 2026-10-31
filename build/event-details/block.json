@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "community-events/event-details",
+  "version": "0.2.0",
+  "title": "Event Details",
+  "category": "widgets",
+  "icon": "info-outline",
+  "description": "Shows the current event's date, time, location and places, or its accessibility and organiser details.",
+  "keywords": [
+    "event",
+    "date",
+    "location",
+    "organiser"
+  ],
+  "attributes": {
+    "variant": {
+      "type": "string",
+      "enum": [
+        "summary",
+        "info"
+      ],
+      "default": "summary"
+    }
+  },
+  "usesContext": [
+    "postId",
+    "postType"
+  ],
+  "supports": {
+    "html": false
+  },
+  "textdomain": "wp-community-events-block",
+  "editorScript": "file:./index.js",
+  "style": "community-events",
+  "render": "file:./render.php"
+}
