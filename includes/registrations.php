@@ -88,19 +88,21 @@ function community_events_add_registration( $event_id, $name, $email, $places ) 
 /**
  * Checks whether an email address has already registered for an event.
  *
- * @param int    $event_id Event ID.
- * @param string $email    Email address.
+ * @param int    $event_id   Event ID.
+ * @param string $email      Email address.
+ * @param int    $exclude_id Registration to ignore, so an edit does not clash with itself.
  * @return bool
  */
-function community_events_is_registered( $event_id, $email ) {
+function community_events_is_registered( $event_id, $email, $exclude_id = 0 ) {
 	global $wpdb;
 
 	return (bool) $wpdb->get_var(
 		$wpdb->prepare(
-			'SELECT id FROM %i WHERE event_id = %d AND email = %s',
+			'SELECT id FROM %i WHERE event_id = %d AND email = %s AND id != %d',
 			community_events_registrations_table(),
 			$event_id,
-			$email
+			$email,
+			$exclude_id
 		)
 	);
 }
@@ -197,4 +199,73 @@ function community_events_get_registration( $registration_id ) {
 	return $wpdb->get_row(
 		$wpdb->prepare( 'SELECT * FROM %i WHERE id = %d', community_events_registrations_table(), $registration_id )
 	);
+}
+
+/**
+ * Updates a registration's details. The event cannot change.
+ *
+ * @param int    $registration_id Registration ID.
+ * @param string $name            Attendee name, already sanitised.
+ * @param string $email           Attendee email, already sanitised.
+ * @param int    $places          Number of places.
+ * @return bool Whether the row was saved.
+ */
+function community_events_update_registration( $registration_id, $name, $email, $places ) {
+	global $wpdb;
+
+	$updated = $wpdb->update(
+		community_events_registrations_table(),
+		array(
+			'name'   => $name,
+			'email'  => $email,
+			'places' => $places,
+		),
+		array( 'id' => $registration_id ),
+		array( '%s', '%s', '%d' ),
+		array( '%d' )
+	);
+
+	return false !== $updated;
+}
+
+/**
+ * Deletes registrations.
+ *
+ * @param int[] $registration_ids Registration IDs.
+ * @return int How many were deleted.
+ */
+function community_events_delete_registrations( $registration_ids ) {
+	global $wpdb;
+
+	$registration_ids = array_filter( array_map( 'absint', (array) $registration_ids ) );
+	if ( ! $registration_ids ) {
+		return 0;
+	}
+
+	// One %d per ID, so every value still goes through prepare().
+	$placeholders = implode( ', ', array_fill( 0, count( $registration_ids ), '%d' ) );
+
+	return (int) $wpdb->query(
+		$wpdb->prepare(
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Only %d placeholders are added.
+			"DELETE FROM %i WHERE id IN ( {$placeholders} )",
+			community_events_registrations_table(),
+			...$registration_ids
+		)
+	);
+}
+
+/**
+ * The most places a registration can have when an admin edits it: the places
+ * still free plus the ones it already holds.
+ *
+ * @param object $registration Row from the registrations table.
+ * @return int
+ */
+function community_events_max_places_for( $registration ) {
+	$capacity = (int) get_post_meta( $registration->event_id, 'ce_event_capacity', true );
+	$free     = $capacity - community_events_get_registration_count( $registration->event_id );
+
+	// The places column is a tinyint, so 255 is the hard limit.
+	return min( 255, max( (int) $registration->places, $free + (int) $registration->places ) );
 }

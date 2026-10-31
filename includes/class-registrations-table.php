@@ -39,6 +39,7 @@ class Community_Events_Registrations_Table extends WP_List_Table {
 
 	public function get_columns() {
 		return array(
+			'cb'         => '<input type="checkbox" />',
 			'name'       => __( 'Name', 'wp-community-events-block' ),
 			'email'      => __( 'Email', 'wp-community-events-block' ),
 			'event'      => __( 'Event', 'wp-community-events-block' ),
@@ -62,8 +63,59 @@ class Community_Events_Registrations_Table extends WP_List_Table {
 		);
 	}
 
+	protected function get_bulk_actions() {
+		return array(
+			'delete' => __( 'Delete', 'wp-community-events-block' ),
+		);
+	}
+
 	protected function column_default( $item, $column_name ) {
 		return esc_html( $item->$column_name );
+	}
+
+	protected function column_cb( $item ) {
+		return sprintf(
+			'<input type="checkbox" name="registration[]" value="%1$d" aria-label="%2$s">',
+			$item->id,
+			/* translators: %s: attendee name. */
+			esc_attr( sprintf( __( 'Select %s', 'wp-community-events-block' ), $item->name ) )
+		);
+	}
+
+	protected function column_name( $item ) {
+		$edit_url   = community_events_registrations_url(
+			array(
+				'action'       => 'edit',
+				'registration' => $item->id,
+			)
+		);
+		$delete_url = community_events_registrations_url(
+			array(
+				'action'       => 'delete',
+				'registration' => $item->id,
+				'event_id'     => $this->get_event_filter(),
+				// Same nonce as the bulk action, so both go through one handler.
+				'_wpnonce'     => wp_create_nonce( 'bulk-registrations' ),
+			)
+		);
+
+		$actions = array(
+			'edit'   => sprintf( '<a href="%s">%s</a>', esc_url( $edit_url ), esc_html__( 'Edit', 'wp-community-events-block' ) ),
+			'delete' => sprintf(
+				'<a href="%s" class="submitdelete" onclick="return confirm( this.dataset.confirm );" data-confirm="%s">%s</a>',
+				esc_url( $delete_url ),
+				/* translators: %s: attendee name. */
+				esc_attr( sprintf( __( 'Delete the registration for %s? This cannot be undone.', 'wp-community-events-block' ), $item->name ) ),
+				esc_html__( 'Delete', 'wp-community-events-block' )
+			),
+		);
+
+		return sprintf(
+			'<strong><a class="row-title" href="%s">%s</a></strong>%s',
+			esc_url( $edit_url ),
+			esc_html( $item->name ),
+			$this->row_actions( $actions )
+		);
 	}
 
 	protected function column_email( $item ) {

@@ -23,7 +23,7 @@ Built with Gutenberg blocks (React), PHP and the WordPress REST API.
 - [x] Event Registration block: name, email and number of people, sent with `fetch` and no page reload
 - [x] Custom REST API endpoint with nonce check, schema validation, a honeypot and capacity checks
 - [x] Registrations stored in a custom database table, with places left updated everywhere
-- [x] Admin registration list with an event filter and CSV export
+- [x] Admin registration list with an event filter, editing, deleting (one or in bulk) and CSV export
 - [x] Confirmation email to the attendee and a notice to the organiser
 
 ### Phase 3: Real-world use
@@ -137,7 +137,7 @@ Registrations come from the public and hold personal details, so every step is c
 - **Validation on the server:** the REST schema checks types, lengths, email format and the 1 to 5 range. The callback then checks that the event exists, has not started, takes bookings, has room, and that the email has not registered already. The browser's own checks are only for convenience.
 - **Sanitising and escaping:** input is sanitised when saved, and every value is escaped when shown. Every SQL query uses `$wpdb->prepare()`.
 - **Spam:** a hidden honeypot field catches bots without a CAPTCHA, which many older visitors find hard to use. Bots get a normal success reply, so they learn nothing.
-- **Permissions:** only users who can `edit_others_posts` (Editors and Administrators) can see registrations or export them. The export link also needs a nonce.
+- **Permissions:** only users who can `edit_others_posts` (Editors and Administrators) can see, edit, delete or export registrations. Every change and the export link also need a nonce, and edits are checked against the same rules as the public form.
 - **CSV injection:** cells that start with `=`, `+`, `-` or `@` get a leading `'`, so Excel shows them as text instead of running them as formulas.
 - **Clean uninstall:** deleting the plugin drops the registrations table and its option.
 
@@ -202,7 +202,7 @@ wp-community-events-block/
 │   ├── template-tags.php           # Shared helpers: event queries, cards, dates, places
 │   ├── registrations.php           # Registrations table: install, queries, places count
 │   ├── rest-api.php                # REST endpoint the registration form posts to
-│   ├── admin.php                   # Events → Registrations screen and CSV export
+│   ├── admin.php                   # Events → Registrations screen: edit, delete, CSV export
 │   ├── class-registrations-table.php # WP_List_Table for the Registrations screen
 │   ├── emails.php                  # Confirmation and organiser emails
 │   ├── assets.php                  # Registers the shared stylesheet

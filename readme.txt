@@ -24,7 +24,7 @@ Current features:
 * Event settings panel in the editor sidebar
 * Event Registration block with capacity limits, spam protection and no page reload
 * Confirmation email to the attendee and a notice to the organiser
-* Events → Registrations admin screen with an event filter and CSV export
+* Events → Registrations admin screen to filter, edit, delete and export registrations as CSV
 
 Planned features:
 
