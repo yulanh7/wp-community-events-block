@@ -60,6 +60,8 @@ The plugin also registers block templates, so an event site works as soon as the
 | `archive-ce_event` | `/events/`: all upcoming events with category filters, grouped by month |
 | `taxonomy-ce_event_category` | `/event-category/<slug>/`: events in one category |
 
+On single event and event category pages, a menu link to `/events/` gets the `current-menu-ancestor` class, so the theme can highlight Events as the current section. WordPress only marks that link on `/events/` itself.
+
 A **Community home page** pattern (in the inserter under **Patterns → Community Events**) adds an intro, the next event, upcoming events, category links and a volunteer call to action.
 
 ## Requirements
@@ -206,6 +208,7 @@ wp-community-events-block/
 │   ├── assets.php                  # Registers the shared stylesheet
 │   ├── editor.php                  # Loads the Event settings sidebar in the editor
 │   ├── templates.php               # Registers the block templates
+│   ├── navigation.php              # Marks Events as the current menu section on event pages
 │   └── patterns.php                # Registers the home page pattern
 ├── src/                            # Block source code (edit these files)
 │   ├── upcoming-event/             # Each block: block.json, index.js, edit.js (React), render.php

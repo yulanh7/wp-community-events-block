@@ -28,6 +28,7 @@ require_once __DIR__ . '/includes/emails.php';
 require_once __DIR__ . '/includes/assets.php';
 require_once __DIR__ . '/includes/editor.php';
 require_once __DIR__ . '/includes/templates.php';
+require_once __DIR__ . '/includes/navigation.php';
 require_once __DIR__ . '/includes/patterns.php';
 /**
  * Registers the block(s) metadata from the `blocks-manifest.php` and registers the block type(s)
